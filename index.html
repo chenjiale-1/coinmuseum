@@ -1,0 +1,385 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>中国古代钱币本体</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  </head>
+  <body data-page="home">
+    <div class="page-frame">
+      <header class="site-header">
+        <div class="container topnav-wrap">
+          <div class="brand-block">
+            <div class="brand-mark">C</div>
+            <div class="brand-text">
+              <div class="title-cn">中国古代钱币本体</div>
+              <div class="title-en">CHINESE ANCIENT COIN ONTOLOGY</div>
+            </div>
+          </div>
+
+          <nav class="main-nav" aria-label="主导航">
+            <button type="button" class="nav-link active" data-target="home">首页</button>
+            <button type="button" class="nav-link" data-target="about">关于项目</button>
+            <button type="button" class="nav-link" data-target="gallery">数字藏品</button>
+            <button type="button" class="nav-link" data-target="timeline">时间轴</button>
+            <button type="button" class="nav-link" data-target="structure">本体结构</button>
+            <button type="button" class="nav-link" data-target="download">资源下载</button>
+            <button type="button" class="nav-link" data-target="team">项目团队</button>
+          </nav>
+        </div>
+      </header>
+
+      <main class="museum-main">
+        <section class="screen active" data-screen="home">
+          <div class="hero-section">
+            <div class="hero-overlay"></div>
+            <div class="container hero-inner">
+              <div class="hero-left">
+                <div class="eyebrow">DIGITAL COLLECTION</div>
+                <h1>中国古代钱币知识图谱与数字藏品</h1>
+                <p>
+                  面向中国古代钱币研究，汇集钱币图片、产地、币名、年份、材质等关键信息，形成结构化知识库，支持学术研究、展示与再利用。
+                </p>
+                <div class="cta-row">
+                  <button type="button" class="btn primary nav-link" data-target="gallery">浏览藏品</button>
+                  <button type="button" class="btn secondary nav-link" data-target="download">下载数据</button>
+                </div>
+              </div>
+
+              <div class="hero-right">
+                <div class="stats-panel">
+                  <div class="panel-label">现有藏品</div>
+                  <div class="panel-number" data-count="121">0</div>
+                  <div class="panel-sub">specimens</div>
+                  <div class="download-box">
+                    <span>数据格式</span>
+                    <div class="download-btns">
+                      <button type="button">RDF</button>
+                      <button type="button">JSON-LD</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="container stat-row">
+              <div class="stat-card">
+                <strong data-count="121">0</strong>
+                <span>藏品总数</span>
+              </div>
+              <div class="stat-card">
+                <strong data-count="36">0</strong>
+                <span>币名类型</span>
+              </div>
+              <div class="stat-card">
+                <strong data-count="17">0</strong>
+                <span>主要铸造地</span>
+              </div>
+              <div class="stat-card">
+                <strong data-count="3">0</strong>
+                <span>主要材质</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="screen" data-screen="about">
+          <div class="content-screen">
+            <div class="screen-header">
+              <span class="screen-tag">About</span>
+              <h2>关于项目</h2>
+            </div>
+            <div class="story-panel">
+              <p>
+                钱币博物馆不仅是收藏与展示中华文明的重要载体，更是连接历史记忆与现代社会认知的重要桥梁。
+                通过系统整理古代钱币的地域、年代、材质、铸造工艺与文化内涵，可以让公众在更直观的方式中理解中国古代经济、政治与民俗生活。
+                它让沉睡的历史以数字化形式复活，帮助后人从实物中感受文明的脉络，也为科研、教学与文化传播提供可靠的知识基础。
+              </p>
+              <p>
+                这种项目的意义在于：它把分散的文物信息结构化、可视化，并以知识图谱的方式建立关联，提升文化遗产的可检索性和可利用性。
+                一座钱币博物馆，不只是一个收藏空间，更是让古老货币重新讲述国家与社会故事的开放平台。
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="screen" data-screen="gallery">
+          <div class="content-screen wide">
+            <div class="screen-header">
+              <span class="screen-tag">Collection</span>
+              <h2>数字藏品</h2>
+            </div>
+
+            <div class="gallery-toolbar">
+              <div class="toolbar-group">
+                <label for="eraFilter">时代</label>
+                <select id="eraFilter">
+                  <option value="all">全部</option>
+                  <option value="西汉">西汉</option>
+                  <option value="唐">唐</option>
+                  <option value="宋">宋</option>
+                  <option value="元">元</option>
+                  <option value="明">明</option>
+                  <option value="清">清</option>
+                </select>
+              </div>
+
+              <div class="toolbar-group">
+                <label for="materialFilter">材质</label>
+                <select id="materialFilter">
+                  <option value="all">全部</option>
+                  <option value="铜">铜</option>
+                  <option value="银">银</option>
+                  <option value="铁">铁</option>
+                </select>
+              </div>
+
+              <div class="toolbar-group">
+                <label for="regionFilter">产地</label>
+                <select id="regionFilter">
+                  <option value="all">全部</option>
+                  <option value="陕西">陕西</option>
+                  <option value="河南">河南</option>
+                  <option value="北京">北京</option>
+                  <option value="山西">山西</option>
+                  <option value="江南">江南</option>
+                  <option value="福建">福建</option>
+                </select>
+              </div>
+
+              <div class="toolbar-group">
+                <label for="typeFilter">类型/版式</label>
+                <select id="typeFilter">
+                  <option value="all">全部</option>
+                  <option value="小平钱">小平钱</option>
+                  <option value="开元通宝">开元通宝</option>
+                  <option value="康熙通宝">康熙通宝</option>
+                  <option value="永通币">永通币</option>
+                  <option value="庆元通宝">庆元通宝</option>
+                  <option value="嘉靖通宝">嘉靖通宝</option>
+                </select>
+              </div>
+
+              <div class="toolbar-group search-group">
+                <label for="coinSearch">关键词搜索</label>
+                <input id="coinSearch" type="text" placeholder="按币名、地区、书体、铭文检索" />
+              </div>
+
+              <button id="uploadCoinBtn" class="upload-btn" type="button">+ 上传货币</button>
+            </div>
+
+            <div class="filter-chips">
+              <button type="button" class="chip active" data-tag="all">全部</button>
+              <button type="button" class="chip" data-tag="西汉">西汉</button>
+              <button type="button" class="chip" data-tag="铜币">铜币</button>
+              <button type="button" class="chip" data-tag="收藏">收藏</button>
+              <button type="button" class="chip" data-tag="圆形">圆形</button>
+              <button type="button" class="chip" data-tag="铭文">铭文</button>
+            </div>
+
+            <div id="coinGrid" class="coin-grid"></div>
+          </div>
+
+          <div id="uploadModal" class="upload-modal" aria-hidden="true">
+            <div class="upload-panel" role="dialog" aria-modal="true">
+              <div class="upload-header">
+                <h3>上传货币</h3>
+                <button id="closeUploadModal" class="close-upload" type="button" aria-label="关闭上传">×</button>
+              </div>
+
+              <form id="coinUploadForm" class="upload-form">
+                <div class="upload-upload-box">
+                  <label for="coinImageInput" class="upload-file-label">选择货币图片</label>
+                  <input id="coinImageInput" type="file" accept="image/*" />
+                  <img id="uploadPreview" class="upload-preview" alt="上传预览" />
+                </div>
+
+                <div class="upload-grid">
+                  <label>
+                    <span>藏品名称</span>
+                    <input name="name" type="text" placeholder="例如：汉代五铢" required />
+                  </label>
+                  <label>
+                    <span>时代</span>
+                    <select name="era" required>
+                      <option value="西汉">西汉</option>
+                      <option value="唐">唐</option>
+                      <option value="宋">宋</option>
+                      <option value="元">元</option>
+                      <option value="明">明</option>
+                      <option value="清">清</option>
+                    </select>
+                  </label>
+                  <label>
+                    <span>材质</span>
+                    <select name="material" required>
+                      <option value="铜">铜</option>
+                      <option value="银">银</option>
+                      <option value="铁">铁</option>
+                    </select>
+                  </label>
+                  <label>
+                    <span>产地</span>
+                    <input name="region" type="text" placeholder="例如：陕西" required />
+                  </label>
+                  <label>
+                    <span>年代</span>
+                    <input name="year" type="text" placeholder="例如：西汉中期" required />
+                  </label>
+                  <label>
+                    <span>重量</span>
+                    <input name="weight" type="text" placeholder="例如：3.7 g" required />
+                  </label>
+                  <label>
+                    <span>直径</span>
+                    <input name="diameter" type="text" placeholder="例如：2.5 cm" required />
+                  </label>
+                  <label>
+                    <span>类型/版式</span>
+                    <input name="type" type="text" placeholder="例如：小平钱 / 开元通宝" required />
+                  </label>
+                  <label>
+                    <span>形制</span>
+                    <input name="shape" type="text" placeholder="例如：方孔圆钱 / 细长刀形" />
+                  </label>
+                  <label>
+                    <span>书体/钱文</span>
+                    <input name="script" type="text" placeholder="例如：楷书 / 篆书" />
+                  </label>
+                  <label>
+                    <span>标签</span>
+                    <input name="tags" type="text" placeholder="例如：铜币, 收藏" />
+                  </label>
+                </div>
+
+                <label class="textarea-label">
+                  <span>简介</span>
+                  <textarea name="description" rows="4" placeholder="请输入钱币简介" required></textarea>
+                </label>
+
+                <div class="upload-actions">
+                  <button type="button" class="cancel-upload">取消</button>
+                  <button type="submit" class="submit-upload">确认上传</button>
+                </div>
+              </form>
+
+              <div class="bulk-upload-box">
+                <div class="bulk-upload-title">批量导入</div>
+                <div class="bulk-upload-grid">
+                  <label class="bulk-upload-field">
+                    <span>Excel 文件</span>
+                    <input id="batchExcelInput" type="file" accept=".xlsx,.xls,.csv" />
+                  </label>
+                  <label class="bulk-upload-field">
+                    <span>图片文件夹</span>
+                    <input id="batchFolderInput" type="file" webkitdirectory directory multiple />
+                  </label>
+                </div>
+                <button id="batchImportBtn" class="batch-import-btn" type="button">批量导入</button>
+              </div>
+            </div>
+          </div>
+
+          <div id="coinDetailOverlay" class="detail-overlay" aria-hidden="true">
+            <div class="detail-panel" role="dialog" aria-modal="true">
+              <button class="detail-close" type="button" aria-label="关闭详情">×</button>
+              <div class="detail-content"></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="screen" data-screen="timeline">
+          <div class="content-screen wide">
+            <div class="screen-header">
+              <span class="screen-tag">Timeline</span>
+              <h2>钱币时间轴</h2>
+            </div>
+            <div class="timeline-toolbar">
+              <div id="timelineSummary" class="timeline-summary">已展示全部钱币</div>
+              <div class="timeline-actions">
+                <button id="timelineSimplifyBtn" class="timeline-btn" type="button">一键简化</button>
+                <button id="timelineResetBtn" class="timeline-btn secondary" type="button">恢复全部</button>
+              </div>
+            </div>
+            <div id="timelineAxis" class="timeline-axis" aria-live="polite"></div>
+          </div>
+        </section>
+
+        <section class="screen" data-screen="structure">
+          <div class="content-screen">
+            <div class="screen-header">
+              <span class="screen-tag">Structure</span>
+              <h2>本体结构</h2>
+            </div>
+            <div class="structure-grid">
+              <div class="structure-card">
+                <span>01</span>
+                <strong>基础层</strong>
+                <p>定义钱币实体、币名、年代、铸造地和材质等核心对象。</p>
+              </div>
+              <div class="structure-card">
+                <span>02</span>
+                <strong>关系层</strong>
+                <p>连接钱币与地域、年代、图像及材质之间的多维关系。</p>
+              </div>
+              <div class="structure-card">
+                <span>03</span>
+                <strong>应用层</strong>
+                <p>支持检索、展示、研究与开放数据服务中的知识利用。</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="screen" data-screen="download">
+          <div class="content-screen">
+            <div class="screen-header">
+              <span class="screen-tag">Download</span>
+              <h2>资源下载</h2>
+            </div>
+            <div class="download-panel">
+              <div class="download-item">
+                <h3>RDF 数据</h3>
+                <p>用于语义网络与知识图谱联接。</p>
+                <button type="button">下载 RDF</button>
+              </div>
+              <div class="download-item">
+                <h3>JSON-LD 数据</h3>
+                <p>适合网页端数据展示与再利用。</p>
+                <button type="button">下载 JSON-LD</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="screen" data-screen="team">
+          <div class="content-screen">
+            <div class="screen-header">
+              <span class="screen-tag">Team</span>
+              <h2>项目团队</h2>
+            </div>
+            <div class="team-grid">
+              <div class="team-card">
+                <strong>项目负责人</strong>
+                <span>钱币学与数字人文学研究</span>
+              </div>
+              <div class="team-card">
+                <strong>数据建设</strong>
+                <span>古代钱币信息结构化整理</span>
+              </div>
+              <div class="team-card">
+                <strong>数字展示</strong>
+                <span>界面设计与知识可视化开发</span>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
