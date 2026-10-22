@@ -4,8 +4,10 @@ services:
     runtime: python
     plan: free
     region: singapore
+    pythonVersion: "3.11.9"
     buildCommand: pip install -r requirements.txt
     startCommand: python server.py
+    healthCheckPath: /api/health
     envVars:
       - key: PYTHON_VERSION
         value: "3.11.9"

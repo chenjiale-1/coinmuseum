@@ -17,10 +17,10 @@ from pathlib import Path
 from flask import Flask, jsonify, request, send_from_directory, session
 
 BASE_DIR = Path(__file__).resolve().parent
-DB_PATH = BASE_DIR / "data" / "coin_museum.db"
+DB_PATH = Path(os.environ.get("DB_PATH", BASE_DIR / "data" / "coin_museum.db"))
 
 app = Flask(__name__, static_folder=".", static_url_path="")
-app.secret_key = "coin-museum-secret-key-2026"
+app.secret_key = os.environ.get("SECRET_KEY", "coin-museum-secret-key-2026")
 
 DEFAULT_ACCOUNTS = {
     "admin": "admin123",
