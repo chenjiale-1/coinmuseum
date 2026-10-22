@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>中国古代钱币本体</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css?v=6" />
     <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
   </head>
   <body data-page="home">
@@ -16,21 +16,50 @@
             <div class="brand-mark">C</div>
             <div class="brand-text">
               <div class="title-cn">中国古代钱币本体</div>
-              <div class="title-en">CHINESE ANCIENT COIN ONTOLOGY</div>
+              <div class="title-en">中国古代钱币知识图谱</div>
             </div>
           </div>
 
           <nav class="main-nav" aria-label="主导航">
-            <button type="button" class="nav-link active" data-target="home">首页</button>
-            <button type="button" class="nav-link" data-target="about">关于项目</button>
-            <button type="button" class="nav-link" data-target="gallery">数字藏品</button>
-            <button type="button" class="nav-link" data-target="timeline">时间轴</button>
-            <button type="button" class="nav-link" data-target="structure">本体结构</button>
-            <button type="button" class="nav-link" data-target="download">资源下载</button>
-            <button type="button" class="nav-link" data-target="team">项目团队</button>
+            <button type="button" class="nav-link active" data-target="home" data-i18n="nav.home">首页</button>
+            <button type="button" class="nav-link" data-target="gallery" data-i18n="nav.gallery">数字藏品</button>
+            <button type="button" class="nav-link" data-target="timeline" data-i18n="nav.timeline">时间轴</button>
+            <button type="button" class="nav-link" data-target="map" data-i18n="nav.map">产地地图</button>
+            <button type="button" class="nav-link" data-target="structure" data-i18n="nav.structure">本体结构</button>
+            <button type="button" class="nav-link nav-link-about" data-target="about" data-i18n="nav.about">关于项目</button>
+            <button type="button" class="lang-toggle" id="langToggle" aria-label="Language switch">EN / 中文</button>
+            <button type="button" class="login-trigger" id="loginTrigger" data-i18n="login">登录</button>
+            <div class="user-badge" id="userBadge" data-i18n="guest">游客</div>
           </nav>
         </div>
       </header>
+
+      <div class="auth-modal-backdrop" id="authModal" aria-hidden="true">
+        <div class="auth-modal" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+          <button type="button" class="auth-close" id="authClose" aria-label="关闭">×</button>
+          <div class="auth-header">
+            <div class="auth-kicker">访问</div>
+            <h3 id="authTitle" data-i18n="welcomeTitle">欢迎访问数字藏品馆</h3>
+          </div>
+
+          <form id="loginForm" class="auth-form">
+            <label>
+              <span data-i18n="username">账号</span>
+              <input type="text" id="usernameInput" name="username" data-i18n-placeholder="usernamePlaceholder" placeholder="请输入账号" required />
+            </label>
+            <label>
+              <span data-i18n="password">密码</span>
+              <input type="password" id="passwordInput" name="password" data-i18n-placeholder="passwordPlaceholder" placeholder="请输入密码" required />
+            </label>
+            <div class="auth-actions">
+              <button type="submit" class="btn primary auth-submit" data-i18n="login">登录</button>
+              <button type="button" class="btn secondary auth-guest" id="guestLoginBtn" data-i18n="guestLogin">游客登录</button>
+            </div>
+            <div class="auth-hint" data-i18n="defaultAccount">默认账号：admin / admin123</div>
+            <div class="auth-message" id="authMessage"></div>
+          </form>
+        </div>
+      </div>
 
       <main class="museum-main">
         <section class="screen active" data-screen="home">
@@ -38,24 +67,24 @@
             <div class="hero-overlay"></div>
             <div class="container hero-inner">
               <div class="hero-left">
-                <div class="eyebrow">DIGITAL COLLECTION</div>
-                <h1>中国古代钱币知识图谱与数字藏品</h1>
-                <p>
+                <div class="eyebrow" data-i18n="digitalCollection">数字藏品</div>
+                <h1 data-i18n="heroTitle">中国古代钱币知识图谱与数字藏品</h1>
+                <p data-i18n="heroText">
                   面向中国古代钱币研究，汇集钱币图片、产地、币名、年份、材质等关键信息，形成结构化知识库，支持学术研究、展示与再利用。
                 </p>
                 <div class="cta-row">
-                  <button type="button" class="btn primary nav-link" data-target="gallery">浏览藏品</button>
-                  <button type="button" class="btn secondary nav-link" data-target="download">下载数据</button>
+                  <button type="button" class="btn primary nav-link" data-target="gallery" data-i18n="browseCollection">浏览藏品</button>
+                  <button type="button" class="btn secondary nav-link" data-target="about" data-i18n="learnMore">了解更多</button>
                 </div>
               </div>
 
               <div class="hero-right">
                 <div class="stats-panel">
-                  <div class="panel-label">现有藏品</div>
-                  <div class="panel-number" data-count="121">0</div>
-                  <div class="panel-sub">specimens</div>
+                  <div class="panel-label" data-i18n="homeStatsLabel">现有藏品</div>
+                  <div class="panel-number" data-stat="specimens" data-count="121">0</div>
+                  <div class="panel-sub" data-i18n="collectionTagShort">藏品</div>
                   <div class="download-box">
-                    <span>数据格式</span>
+                    <span data-i18n="dataFormat">数据格式</span>
                     <div class="download-btns">
                       <button type="button">RDF</button>
                       <button type="button">JSON-LD</button>
@@ -67,120 +96,166 @@
 
             <div class="container stat-row">
               <div class="stat-card">
-                <strong data-count="121">0</strong>
-                <span>藏品总数</span>
+                <strong data-stat="specimens" data-count="121">0</strong>
+                <span data-i18n="statTotal">藏品总数</span>
               </div>
               <div class="stat-card">
-                <strong data-count="36">0</strong>
-                <span>币名类型</span>
+                <strong data-stat="coinTypes" data-count="36">0</strong>
+                <span data-i18n="statTypes">币名类型</span>
               </div>
               <div class="stat-card">
-                <strong data-count="17">0</strong>
-                <span>主要铸造地</span>
+                <strong data-stat="mintRegions" data-count="17">0</strong>
+                <span data-i18n="statRegions">主要铸造地</span>
               </div>
               <div class="stat-card">
-                <strong data-count="3">0</strong>
-                <span>主要材质</span>
+                <strong data-stat="materials" data-count="3">0</strong>
+                <span data-i18n="statMaterials">主要材质</span>
               </div>
             </div>
           </div>
         </section>
 
-        <section class="screen" data-screen="about">
+        <section class="screen screen--with-bg" data-screen="about" style="--screen-bg: url('images/backgrounds/bg_city.jpg')">
           <div class="content-screen">
             <div class="screen-header">
-              <span class="screen-tag">About</span>
-              <h2>关于项目</h2>
+              <span class="screen-tag" data-i18n="aboutTag">关于项目</span>
+              <h2 data-i18n="aboutTitle">关于项目</h2>
             </div>
             <div class="story-panel">
-              <p>
+              <p data-i18n="aboutText1">
                 钱币博物馆不仅是收藏与展示中华文明的重要载体，更是连接历史记忆与现代社会认知的重要桥梁。
                 通过系统整理古代钱币的地域、年代、材质、铸造工艺与文化内涵，可以让公众在更直观的方式中理解中国古代经济、政治与民俗生活。
                 它让沉睡的历史以数字化形式复活，帮助后人从实物中感受文明的脉络，也为科研、教学与文化传播提供可靠的知识基础。
               </p>
-              <p>
+              <p data-i18n="aboutText2">
                 这种项目的意义在于：它把分散的文物信息结构化、可视化，并以知识图谱的方式建立关联，提升文化遗产的可检索性和可利用性。
                 一座钱币博物馆，不只是一个收藏空间，更是让古老货币重新讲述国家与社会故事的开放平台。
               </p>
             </div>
+
+            <div class="screen-header" style="margin-top: 2rem;">
+              <span class="screen-tag" data-i18n="teamTag">项目团队</span>
+              <h2 data-i18n="teamTitle">项目团队</h2>
+            </div>
+            <div class="team-grid">
+              <div class="team-card">
+                <strong data-i18n="teamLeader">项目负责人</strong>
+                <span data-i18n="teamLeaderDesc">钱币学与数字人文学研究</span>
+              </div>
+              <div class="team-card">
+                <strong data-i18n="teamData">数据建设</strong>
+                <span data-i18n="teamDataDesc">古代钱币信息结构化整理</span>
+              </div>
+              <div class="team-card">
+                <strong data-i18n="teamDisplay">数字展示</strong>
+                <span data-i18n="teamDisplayDesc">界面设计与知识可视化开发</span>
+              </div>
+            </div>
           </div>
         </section>
 
-        <section class="screen" data-screen="gallery">
+        <section class="screen screen--with-bg" data-screen="gallery" style="--screen-bg: url('images/backgrounds/bg_street.png')">
           <div class="content-screen wide">
             <div class="screen-header">
-              <span class="screen-tag">Collection</span>
-              <h2>数字藏品</h2>
+              <span class="screen-tag" data-i18n="collectionTag">数字藏品</span>
+              <h2 data-i18n="collectionTitle">数字藏品</h2>
+              <p class="gallery-lead" data-i18n="collectionLead">以知识图谱属性为入口，支持分面筛选、字段语法检索与同类钱币关联发现。</p>
             </div>
 
-            <div class="gallery-toolbar">
-              <div class="toolbar-group">
-                <label for="eraFilter">时代</label>
-                <select id="eraFilter">
-                  <option value="all">全部</option>
-                  <option value="西汉">西汉</option>
-                  <option value="唐">唐</option>
-                  <option value="宋">宋</option>
-                  <option value="元">元</option>
-                  <option value="明">明</option>
-                  <option value="清">清</option>
-                </select>
+            <div class="search-command-center">
+              <div class="search-center-head">
+                <div>
+                  <span class="search-eyebrow" data-i18n="graphSearchTag">知识图谱检索</span>
+                  <h3 data-i18n="graphSearchTitle">从属性到关系，定位一枚钱币</h3>
+                </div>
+                <div id="searchResultCount" class="search-result-count">共 0 条结果</div>
               </div>
 
-              <div class="toolbar-group">
-                <label for="materialFilter">材质</label>
-                <select id="materialFilter">
-                  <option value="all">全部</option>
-                  <option value="铜">铜</option>
-                  <option value="银">银</option>
-                  <option value="铁">铁</option>
-                </select>
+              <div class="gallery-toolbar">
+                <div class="toolbar-group">
+                  <label for="eraFilter" data-i18n="eraLabel">时代</label>
+                  <select id="eraFilter">
+                    <option value="all">全部</option>
+                  </select>
+                </div>
+
+                <div class="toolbar-group">
+                  <label for="materialFilter" data-i18n="filter.material">材质</label>
+                  <select id="materialFilter">
+                    <option value="all">全部</option>
+                  </select>
+                </div>
+
+                <div class="toolbar-group">
+                  <label for="regionFilter" data-i18n="filter.region">产地</label>
+                  <select id="regionFilter">
+                    <option value="all">全部</option>
+                  </select>
+                </div>
+
+                <div class="toolbar-group">
+                  <label for="typeFilter" data-i18n="filter.type">类型/版式</label>
+                  <select id="typeFilter">
+                    <option value="all">全部</option>
+                  </select>
+                </div>
+
+                <div class="toolbar-group search-group">
+                  <label for="coinSearch" data-i18n="filter.keyword">关键词搜索</label>
+                  <input id="coinSearch" type="text" data-i18n-placeholder="filter.keywordPlaceholder" placeholder="按币名、地区、书体、铭文检索" />
+                </div>
+
+                <button id="uploadCoinBtn" class="upload-btn" type="button" data-i18n="uploadCoin">+ 上传货币</button>
               </div>
 
-              <div class="toolbar-group">
-                <label for="regionFilter">产地</label>
-                <select id="regionFilter">
-                  <option value="all">全部</option>
-                  <option value="陕西">陕西</option>
-                  <option value="河南">河南</option>
-                  <option value="北京">北京</option>
-                  <option value="山西">山西</option>
-                  <option value="江南">江南</option>
-                  <option value="福建">福建</option>
-                </select>
+              <div class="attribute-search-panel">
+                <div class="attribute-panel-title">
+                  <strong data-i18n="attributeSearchTitle">属性搜索</strong>
+                  <span data-i18n="attributeSearchHint">按本体属性组合筛选，可使用“字段:值”语法</span>
+                </div>
+                <div class="attribute-grid">
+                  <label>
+                    <span data-i18n="filter.shape">形制</span>
+                    <select id="shapeFilter"><option value="all">全部</option></select>
+                  </label>
+                  <label>
+                    <span data-i18n="filter.script">书体</span>
+                    <select id="scriptFilter"><option value="all">全部</option></select>
+                  </label>
+                  <label>
+                    <span data-i18n="filter.inscription">钱文</span>
+                    <input id="inscriptionFilter" type="text" data-i18n-placeholder="inscriptionPlaceholder" placeholder="如：五铢、半两" />
+                  </label>
+                  <label>
+                    <span data-i18n="filter.excavation">出土地点</span>
+                    <input id="excavationFilter" type="text" data-i18n-placeholder="excavationPlaceholder" placeholder="如：河南、湖北" />
+                  </label>
+                </div>
+                <div class="property-query-row">
+                  <input id="propertyQuery" type="text" data-i18n-placeholder="propertyQueryPlaceholder" placeholder="属性语法：材质:青铜 形制:方孔圆钱 钱文:五铢" />
+                  <button id="applyPropertyQuery" type="button" data-i18n="applyPropertyQuery">解析属性</button>
+                  <button id="clearSearchBtn" class="secondary" type="button" data-i18n="clearSearch">清空检索</button>
+                  <button id="kgPanelToggle" type="button" class="kg-panel-toggle" aria-pressed="false" title="显示/隐藏钱币关系快照">
+                    <span>📊</span> 关系快照
+                  </button>
+                </div>
+                <div class="property-examples" aria-label="属性检索示例">
+                  <button type="button" data-i18n="propertyExampleBronzeRound" data-query="材质:青铜 形制:方孔圆钱">青铜方孔圆钱</button>
+                  <button type="button" data-i18n="propertyExampleWarringStates" data-query="时代:战国">战国钱币</button>
+                  <button type="button" data-i18n="propertyExampleWuzhu" data-query="钱文:五铢">五铢钱文</button>
+                  <button type="button" data-i18n="propertyExampleHenanExcavated" data-query="出土地:河南">河南出土</button>
+                </div>
               </div>
-
-              <div class="toolbar-group">
-                <label for="typeFilter">类型/版式</label>
-                <select id="typeFilter">
-                  <option value="all">全部</option>
-                  <option value="小平钱">小平钱</option>
-                  <option value="开元通宝">开元通宝</option>
-                  <option value="康熙通宝">康熙通宝</option>
-                  <option value="永通币">永通币</option>
-                  <option value="庆元通宝">庆元通宝</option>
-                  <option value="嘉靖通宝">嘉靖通宝</option>
-                </select>
-              </div>
-
-              <div class="toolbar-group search-group">
-                <label for="coinSearch">关键词搜索</label>
-                <input id="coinSearch" type="text" placeholder="按币名、地区、书体、铭文检索" />
-              </div>
-
-              <button id="uploadCoinBtn" class="upload-btn" type="button">+ 上传货币</button>
             </div>
 
             <div class="filter-chips">
               <button type="button" class="chip active" data-tag="all">全部</button>
-              <button type="button" class="chip" data-tag="西汉">西汉</button>
-              <button type="button" class="chip" data-tag="铜币">铜币</button>
-              <button type="button" class="chip" data-tag="收藏">收藏</button>
-              <button type="button" class="chip" data-tag="圆形">圆形</button>
-              <button type="button" class="chip" data-tag="铭文">铭文</button>
             </div>
 
-            <div id="coinGrid" class="coin-grid"></div>
+            <div class="kg-search-layout">
+              <aside id="kgInsightPanel" class="kg-insight-panel" aria-live="polite"></aside>
+              <div id="coinGrid" class="coin-grid"></div>
+            </div>
           </div>
 
           <div id="uploadModal" class="upload-modal" aria-hidden="true">
@@ -283,101 +358,334 @@
             </div>
           </div>
 
-          <div id="coinDetailOverlay" class="detail-overlay" aria-hidden="true">
-            <div class="detail-panel" role="dialog" aria-modal="true">
-              <button class="detail-close" type="button" aria-label="关闭详情">×</button>
-              <div class="detail-content"></div>
-            </div>
-          </div>
         </section>
 
-        <section class="screen" data-screen="timeline">
+        <section class="screen screen--with-bg" data-screen="timeline" style="--screen-bg: url('images/backgrounds/bg_figures.jpg')">
           <div class="content-screen wide">
             <div class="screen-header">
-              <span class="screen-tag">Timeline</span>
-              <h2>钱币时间轴</h2>
+              <span class="screen-tag" data-i18n="timelineTag">时间轴</span>
+              <h2 data-i18n="timelineTitle">钱币时间轴</h2>
+              <p class="timeline-lead" data-i18n="timelineLead">以方孔圆钱为时间刻度，沿千年币制长卷观察材质、形制与铸造地的变化。</p>
             </div>
             <div class="timeline-toolbar">
-              <div id="timelineSummary" class="timeline-summary">已展示全部钱币</div>
+              <div id="timelineSummary" class="timeline-summary" data-i18n="timelineSummaryDefault">已展示全部钱币</div>
               <div class="timeline-actions">
-                <button id="timelineSimplifyBtn" class="timeline-btn" type="button">一键简化</button>
-                <button id="timelineResetBtn" class="timeline-btn secondary" type="button">恢复全部</button>
+                <button id="timelineSimplifyBtn" class="timeline-btn" type="button" data-i18n="timelineSimplify">主币脉络</button>
+                <button id="timelineResetBtn" class="timeline-btn secondary" type="button" data-i18n="timelineReset">完整长卷</button>
               </div>
             </div>
             <div id="timelineAxis" class="timeline-axis" aria-live="polite"></div>
           </div>
         </section>
 
-        <section class="screen" data-screen="structure">
-          <div class="content-screen">
+        <section class="screen screen--with-bg" data-screen="map" style="--screen-bg: url('images/backgrounds/bg_city.jpg')">
+          <div class="content-screen wide">
             <div class="screen-header">
-              <span class="screen-tag">Structure</span>
-              <h2>本体结构</h2>
+              <span class="screen-tag" data-i18n="mapTag">产地地图</span>
+              <h2 data-i18n="mapTitle">货币产地地图</h2>
             </div>
-            <div class="structure-grid">
-              <div class="structure-card">
-                <span>01</span>
-                <strong>基础层</strong>
-                <p>定义钱币实体、币名、年代、铸造地和材质等核心对象。</p>
+
+            <div class="map-panel">
+              <div class="china-map-card">
+                <svg class="china-map-svg" viewBox="0 0 740 560" aria-label="中国货币产地地图">
+                  <path d="M92 176 L126 132 L172 98 L220 74 L282 64 L340 46 L394 58 L444 82 L492 90 L550 108 L600 126 L654 150 L690 192 L708 242 L704 286 L690 332 L664 374 L636 404 L604 434 L564 468 L528 496 L484 512 L446 526 L402 518 L350 508 L314 494 L268 488 L228 468 L194 446 L164 430 L132 400 L106 366 L84 328 L62 288 L54 252 L62 216 L74 192 Z" class="china-map-shape"/>
+                </svg>
+
+                <button class="map-city-dot" type="button" data-city="西安" style="left: 32%; top: 35%;"><span>西安</span></button>
+                <button class="map-city-dot" type="button" data-city="洛阳" style="left: 41%; top: 46%;"><span>洛阳</span></button>
+                <button class="map-city-dot" type="button" data-city="北京" style="left: 68%; top: 22%;"><span>北京</span></button>
+                <button class="map-city-dot" type="button" data-city="太原" style="left: 50%; top: 30%;"><span>太原</span></button>
+                <button class="map-city-dot" type="button" data-city="南京" style="left: 65%; top: 46%;"><span>南京</span></button>
+                <button class="map-city-dot" type="button" data-city="福州" style="left: 77%; top: 60%;"><span>福州</span></button>
+                <button class="map-city-dot" type="button" data-city="成都" style="left: 39%; top: 72%;"><span>成都</span></button>
+                <button class="map-city-dot" type="button" data-city="杭州" style="left: 70%; top: 56%;"><span>杭州</span></button>
               </div>
-              <div class="structure-card">
-                <span>02</span>
-                <strong>关系层</strong>
-                <p>连接钱币与地域、年代、图像及材质之间的多维关系。</p>
-              </div>
-              <div class="structure-card">
-                <span>03</span>
-                <strong>应用层</strong>
-                <p>支持检索、展示、研究与开放数据服务中的知识利用。</p>
+
+              <div class="map-info-card" id="cityDetailCard">
+                <div class="map-info-title" data-i18n="mapPromptTitle">点击城市查看货币</div>
+                <p data-i18n="mapPromptText">请选择上方地图中的产地城市，可查看该地出产的钱币名称。</p>
               </div>
             </div>
           </div>
         </section>
 
-        <section class="screen" data-screen="download">
-          <div class="content-screen">
+        <section class="screen screen--with-bg" data-screen="structure" style="--screen-bg: url('images/backgrounds/bg_court.jpg')">
+          <div class="content-screen wide">
             <div class="screen-header">
-              <span class="screen-tag">Download</span>
-              <h2>资源下载</h2>
+              <span class="screen-tag">本体结构</span>
+              <h2>中国古代钱币知识本体结构</h2>
+              <p class="screen-lead">
+                本体以正式出版的钱币学工具书、国家级博物馆公开资料和专业学术研究成果为主要数据来源。其中，项目目前主要使用《中国钱币大辞典·北宋篇》提取钱币信息；中国钱币博物馆、中国国家博物馆公开资料作为辅助参考验证信息。为保证每条记录可追溯、可核查，各实体统一增加来源标注字段，记录具体辞典条目、页码或博物馆藏品编号。
+              </p>
             </div>
-            <div class="download-panel">
-              <div class="download-item">
-                <h3>RDF 数据</h3>
-                <p>用于语义网络与知识图谱联接。</p>
-                <button type="button">下载 RDF</button>
+
+            <!-- 〇、交互式本体图谱 -->
+            <div class="structure-block ontology-interactive">
+              <h3 class="structure-block-title"><span class="block-index">00</span>交互式本体图谱</h3>
+              <p class="ontology-hint">图谱中每个实体都是一枚“方孔圆钱”：中央大钱为<strong>钱币</strong>实例，外围小钱为本体实体，连线上的流动光点表示关系方向。悬停或点击任一钱币可高亮其全部关系；点击连线标签或下方关系卡片可定位具体关系；点击钱币还可看到翻面动画。</p>
+              <div class="ontology-toolbar">
+                <button type="button" id="ontologyLabelToggle" class="ontology-tool-btn">隐藏关系标签</button>
+                <button type="button" id="ontologyResetBtn" class="ontology-tool-btn">清除选择</button>
+                <div class="ontology-legend" id="ontologyLegend"></div>
               </div>
-              <div class="download-item">
-                <h3>JSON-LD 数据</h3>
-                <p>适合网页端数据展示与再利用。</p>
-                <button type="button">下载 JSON-LD</button>
+              <div class="ontology-graph-scroll">
+                <div class="ontology-graph" id="ontologyGraph" aria-label="中国古代钱币本体交互图谱">
+                  <i class="bg-coin bg-coin-1"></i>
+                  <i class="bg-coin bg-coin-2"></i>
+                  <i class="bg-coin bg-coin-3"></i>
+                </div>
+              </div>
+              <div class="ontology-info-panel" id="ontologyInfoPanel"></div>
+              <div class="ontology-statusbar" id="ontologyStatusBar" role="status" aria-live="polite">
+                <span class="ontology-statusbar-tag">状态栏</span>
+                <span class="ontology-statusbar-text" id="ontologyStatusText">将鼠标移到上方任一类型标签上，这里会显示该类型的说明。</span>
+              </div>
+            </div>
+
+
+            <!-- 一、实体类型 -->
+            <div class="structure-block">
+              <h3 class="structure-block-title"><span class="block-index">01</span>实体类型</h3>
+              <div class="structure-table-wrap">
+                <table class="structure-table">
+                  <thead>
+                    <tr><th>id</th><th>实体名称</th><th>说明</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr data-node="coin"><td>coin</td><td>钱币</td><td>中国古代由官方规定并发行、以具体版式记录为实例的货币。</td></tr>
+                    <tr data-node="regime"><td>Regime</td><td>政权</td><td>中国古代在一定时期和地域内行使统治权并承担钱币发行管理职能的政治组织。</td></tr>
+                    <tr data-node="mint"><td>Mint</td><td>铸造机构</td><td>中国古代承担钱币铸造及相关管理职能的专门组织。</td></tr>
+                    <tr data-node="person"><td>Person</td><td>历史人物</td><td>中国古代与币制改革、钱币铸造或钱币研究等活动相关的人物。</td></tr>
+                    <tr data-node="era"><td>Era</td><td>年号</td><td>中国古代帝王用于纪年的名称，也是部分钱币命名的依据。</td></tr>
+                    <tr data-node="region"><td>Region</td><td>地区</td><td>与中国古代钱币铸造或流通活动相关的地理区域。</td></tr>
+                    <tr data-node="route"><td>Route</td><td>流通路线（待定）</td><td>中国古代钱币在流通或贸易活动中经过的地理路径。</td></tr>
+                    <tr><td>Area</td><td>出土地（待定）</td><td>中国古代钱币经考古发掘或其他发现活动出土的地理地点。</td></tr>
+                    <tr data-node="material"><td>Material</td><td>材质名</td><td>制作中国古代钱币所使用的主要物质材料。</td></tr>
+                    <tr data-node="shape"><td>shape</td><td>形制</td><td>中国古代钱币在外形及结构方面形成的基本类型。</td></tr>
+                    <tr data-node="script"><td>script</td><td>钱文书体</td><td>中国古代钱币表面文字所采用的书法字体类型。</td></tr>
+                    <tr data-node="sourceRef"><td>source_ref</td><td>文献出处</td><td>记载中国古代钱币相关信息并可通过条目号、页码或编号定位的文献或资料来源。</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- 二、关系类型 -->
+            <div class="structure-block">
+              <h3 class="structure-block-title"><span class="block-index">02</span>关系类型</h3>
+              <div class="relation-grid">
+                <div class="relation-item" data-edge="issuedBy" tabindex="0"><div class="relation-head">issuedBy</div><div class="relation-meta">coin → Regime</div><p>钱币由某政权发行</p></div>
+                <div class="relation-item" data-edge="mintedAt" tabindex="0"><div class="relation-head">mintedAt</div><div class="relation-meta">coin → Mint</div><p>钱币由某机构铸造</p></div>
+                <div class="relation-item" data-edge="belongsToRegime" tabindex="0"><div class="relation-head">belongsToRegime</div><div class="relation-meta">Mint → Regime</div><p>铸造机构隶属于某政权</p></div>
+                <div class="relation-item" data-edge="overseesMint" tabindex="0"><div class="relation-head">overseesMint</div><div class="relation-meta">Person → Mint</div><p>人物主持某铸造机构事务</p></div>
+                <div class="relation-item" data-edge="reformedCurrency" tabindex="0"><div class="relation-head">reformedCurrency</div><div class="relation-meta">Person → Regime / coin</div><p>人物主导某次币制改革</p></div>
+                <div class="relation-item" data-edge="succeededBy" tabindex="0"><div class="relation-head">succeededBy</div><div class="relation-meta">Regime → Regime</div><p>政权更替关系，用于年代排序与时间轴展示</p></div>
+                <div class="relation-item" data-edge="isVariantOf" tabindex="0"><div class="relation-head">isVariantOf</div><div class="relation-meta">coin → CoinType</div><p>具体版式记录归属于某一钱币抽象类型</p></div>
+                <div class="relation-item" data-edge="namedAfterEra" tabindex="0"><div class="relation-head">namedAfterEra</div><div class="relation-meta">coin → Era</div><p>钱币名称所依据的年号</p></div>
+                <div class="relation-item" data-edge="mintedInRegion" tabindex="0"><div class="relation-head">mintedInRegion</div><div class="relation-meta">Mint → Region</div><p>铸造机构所在地区</p></div>
+                <div class="relation-item" data-edge="circulatesIn" tabindex="0"><div class="relation-head">circulatesIn</div><div class="relation-meta">coin → Region</div><p>钱币流通所及的地区</p></div>
+                <div class="relation-item" data-edge="circulatesAlong" tabindex="0"><div class="relation-head">circulatesAlong</div><div class="relation-meta">coin → Route</div><p>钱币流通所经的路线</p></div>
+                <div class="relation-item" data-edge="madeOf" tabindex="0"><div class="relation-head">madeOf</div><div class="relation-meta">coin → Material</div><p>钱币制作所使用的主要材质</p></div>
+                <div class="relation-item" data-edge="hasShape" tabindex="0"><div class="relation-head">hasShape</div><div class="relation-meta">coin → Shape</div><p>钱币所属的基本形制</p></div>
+                <div class="relation-item" data-edge="usesScript" tabindex="0"><div class="relation-head">usesScript</div><div class="relation-meta">coin → Script</div><p>钱币钱文所使用的书体</p></div>
+                <div class="relation-item" data-edge="sourcedFrom" tabindex="0"><div class="relation-head">sourcedFrom</div><div class="relation-meta">coin → Source_ref</div><p>钱币实体信息来源于具体文献或资料条目</p></div>
+                <div class="relation-item relation-item-hint"><p class="relation-hint">关系的定义端与指向端共同构成本体的约束框架：实例层钱币通过发行、铸造、材质、形制、书体等关系向上关联制度与物质属性层，通过“isVariantOf”关联抽象钱币类型层，形成可检索、可聚合、可扩展的知识网络。</p></div>
+              </div>
+            </div>
+
+            <!-- 三、数据属性 -->
+            <div class="structure-block">
+              <h3 class="structure-block-title"><span class="block-index">03</span>数据属性</h3>
+              <p class="ontology-hint">值域说明：xsd 表示 XML Schema 数据类型命名空间；文字字段采用 xsd:string，公历年份采用 xsd:integer（公元前以负整数表示），图像路径或 URI 采用 xsd:anyURI。根据已抽取记录，直径、孔宽、厚度和重量可能包含区间或不等式，因此采用 xsd:string 保留原值；坐标按经纬度组合文本保存，也采用 xsd:string。</p>
+
+              <h4 class="structure-subtitle">1. coin（钱币）</h4>
+              <div class="structure-table-wrap">
+                <table class="structure-table">
+                  <thead>
+                    <tr><th>id</th><th>名称</th><th>说明</th><th>定义域</th><th>值域</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>name</td><td>名称</td><td>钱币的全称</td><td>coin（钱币）</td><td>xsd:string</td></tr>
+                    <tr><td>type</td><td>类型</td><td>钱币的币值或形制等级</td><td>coin（钱币）</td><td>xsd:string</td></tr>
+                    <tr><td>diameter_cm</td><td>直径</td><td>单位厘米；若辞典给出区间值，按区间记录</td><td>coin（钱币）</td><td>xsd:string</td></tr>
+                    <tr><td>hole_width_cm</td><td>孔宽</td><td>单位厘米；同上</td><td>coin（钱币）</td><td>xsd:string</td></tr>
+                    <tr><td>rim_thickness_cm</td><td>厚度</td><td>单位厘米；同上</td><td>coin（钱币）</td><td>xsd:string</td></tr>
+                    <tr><td>weight_g</td><td>重量</td><td>单位克；注明是实测值还是辞典给定的参考值</td><td>coin（钱币）</td><td>xsd:string</td></tr>
+                    <tr><td>image</td><td>图像</td><td>钱币图像的存储路径或URI</td><td>coin（钱币）</td><td>xsd:anyURI</td></tr>
+                    <tr><td>image_source</td><td>图像来源</td><td>图像所属机构，如中国钱币博物馆、中国国家博物馆</td><td>coin（钱币）</td><td>xsd:string</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <h4 class="structure-subtitle">2. Regime（政权）</h4>
+              <div class="structure-table-wrap">
+                <table class="structure-table">
+                  <thead>
+                    <tr><th>id</th><th>名称</th><th>说明</th><th>定义域</th><th>值域</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>name</td><td>名称</td><td>政权的标准名称</td><td>Regime（政权）</td><td>xsd:string</td></tr>
+                    <tr><td>alias</td><td>别称</td><td>政权的别称</td><td>Regime（政权）</td><td>xsd:string</td></tr>
+                    <tr><td>start_year</td><td>建立年份</td><td>公历年份</td><td>Regime（政权）</td><td>xsd:integer</td></tr>
+                    <tr><td>end_year</td><td>灭亡年份</td><td>公历年份</td><td>Regime（政权）</td><td>xsd:integer</td></tr>
+                    <tr><td>capital</td><td>都城</td><td></td><td>Regime（政权）</td><td>xsd:string</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <h4 class="structure-subtitle">3. Mint（铸造机构）</h4>
+              <div class="structure-table-wrap">
+                <table class="structure-table">
+                  <thead>
+                    <tr><th>id</th><th>名称</th><th>说明</th><th>定义域</th><th>值域</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>name</td><td>名称</td><td>机构的标准名称</td><td>Mint（铸造机构）</td><td>xsd:string</td></tr>
+                    <tr><td>active_start</td><td>建立年份</td><td>公历年份</td><td>Mint（铸造机构）</td><td>xsd:integer</td></tr>
+                    <tr><td>active_end</td><td>取缔年份</td><td>公历年份</td><td>Mint（铸造机构）</td><td>xsd:integer</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <h4 class="structure-subtitle">4. Person（历史人物）</h4>
+              <div class="structure-table-wrap">
+                <table class="structure-table">
+                  <thead>
+                    <tr><th>id</th><th>名称</th><th>说明</th><th>定义域</th><th>值域</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>name</td><td>名字</td><td></td><td>Person（历史人物）</td><td>xsd:string</td></tr>
+                    <tr><td>office</td><td>官职</td><td></td><td>Person（历史人物）</td><td>xsd:string</td></tr>
+                    <tr><td>birth</td><td>出生年份</td><td>公历年份</td><td>Person（历史人物）</td><td>xsd:integer</td></tr>
+                    <tr><td>die</td><td>死亡年份</td><td>公历年份</td><td>Person（历史人物）</td><td>xsd:integer</td></tr>
+                    <tr><td>achievement</td><td>成就</td><td>与货币相关的事迹</td><td>Person（历史人物）</td><td>xsd:string</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <h4 class="structure-subtitle">5. Era（年号）</h4>
+              <div class="structure-table-wrap">
+                <table class="structure-table">
+                  <thead>
+                    <tr><th>id</th><th>名称</th><th>说明</th><th>定义域</th><th>值域</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>name</td><td>年号名称</td><td>如“天禧”“开元”</td><td>Era（年号）</td><td>xsd:string</td></tr>
+                    <tr><td>start_year</td><td>起始年份</td><td>公历年份</td><td>Era（年号）</td><td>xsd:integer</td></tr>
+                    <tr><td>end_year</td><td>结束年份</td><td>公历年份</td><td>Era（年号）</td><td>xsd:integer</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <h4 class="structure-subtitle">6. Region（地区）</h4>
+              <div class="structure-table-wrap">
+                <table class="structure-table">
+                  <thead>
+                    <tr><th>id</th><th>名称</th><th>说明</th><th>定义域</th><th>值域</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>name</td><td>标准地名</td><td>现代通用地名</td><td>Region（地区）</td><td>xsd:string</td></tr>
+                    <tr><td>historical_name</td><td>历史地名</td><td>钱币学文献中使用的历史地名</td><td>Region（地区）</td><td>xsd:string</td></tr>
+                    <tr><td>coordinates</td><td>坐标（可选）</td><td>经纬度</td><td>Region（地区）</td><td>xsd:string</td></tr>
+                    <tr><td>source_ref</td><td>地名对照依据</td><td>如《中国历史地图集》、CHGIS 等权威地名对照来源</td><td>Region（地区）</td><td>xsd:string</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <h4 class="structure-subtitle">7. Material（材质名）</h4>
+              <div class="structure-table-wrap">
+                <table class="structure-table">
+                  <thead>
+                    <tr><th>id</th><th>名称</th><th>说明</th><th>定义域</th><th>值域</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>name</td><td>材质名</td><td>钱币制作所使用的主材质（青铜/黄铜/铁/铅/银/金/纸）</td><td>Material（材质）</td><td>xsd:string</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <h4 class="structure-subtitle">8. Shape（形制）</h4>
+              <div class="structure-table-wrap">
+                <table class="structure-table">
+                  <thead>
+                    <tr><th>id</th><th>名称</th><th>说明</th><th>定义域</th><th>值域</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>name</td><td>形制</td><td>方孔圆钱、尖足布、刀币、元宝形银锭等</td><td>shape（形制）</td><td>xsd:string</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <h4 class="structure-subtitle">9. Script（钱文书体）</h4>
+              <div class="structure-table-wrap">
+                <table class="structure-table">
+                  <thead>
+                    <tr><th>id</th><th>名称</th><th>说明</th><th>定义域</th><th>值域</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>name</td><td>钱文书体</td><td>钱币上所使用的文字书体类型（如楷书、篆书）</td><td>script（钱文书体）</td><td>xsd:string</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <h4 class="structure-subtitle">10. Source_ref（文献出处）</h4>
+              <div class="structure-table-wrap">
+                <table class="structure-table">
+                  <thead>
+                    <tr><th>id</th><th>名称</th><th>说明</th><th>定义域</th><th>值域</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>name</td><td>文献出处</td><td>辞典条目号/页码，用于记录可追溯、可核查</td><td>source_ref（文献出处）</td><td>xsd:string</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <p class="structure-note">
+                书体、版别及文字特征（如楷书、狭宝、仰宝、接郭等）本阶段不单独拆分建模，作为钱币全名的一部分保存；后续可根据研究需求进一步扩展为独立实体或属性。
+              </p>
+            </div>
+
+            <!-- 四、数据源与收录规范 -->
+            <div class="structure-block structure-block--compact">
+              <h3 class="structure-block-title"><span class="block-index">04</span>数据源、版式与收录规范</h3>
+
+              <div class="compact-section">
+                <h4 class="compact-title">数据源</h4>
+                <p>正式出版的钱币学工具书、国家级博物馆公开资料和专业学术研究成果。项目目前主要使用《中国钱币大辞典·北宋篇》提取钱币信息；中国钱币博物馆、中国国家博物馆公开藏品资料作为辅助参考验证信息。各实体统一增加来源标注字段，记录具体辞典条目、页码或博物馆藏品编号，以保证每条记录可追溯、可核查。</p>
+              </div>
+
+              <div class="compact-section">
+                <h4 class="compact-title">版式与类型层</h4>
+                <p>同一名称的钱币如存在多个版式或不同测量数据，仍按照辞典中的独立记录分别建立钱币实体（coin）。例如“天禧通宝·小平钱·楷书阔宝接郭”“天禧通宝·小平钱·楷书阔宝接郭大样”“天禧通宝·小平钱·楷书阔宝接郭小样”分别作为三条钱币记录保存。</p>
+                <p>在此基础上新增一层可选的 CoinType 抽象实体（如“天禧通宝”），各版式记录通过 isVariantOf 关系指向同一个 CoinType。这样在检索“天禧通宝”时可自动聚合其下全部版式，且为后续按研究需求拆分书体、版别、文字特征等属性预留了结构位置，无需改动既有实体体系。</p>
+                <p>本阶段暂不对钱币名称中的书体、版别及文字特征（如楷书、狭宝、仰宝、接郭等）进行单独拆分建模，而是作为钱币全名的一部分进行保存，后续可根据研究需求进一步扩展。</p>
+              </div>
+
+              <div class="compact-section">
+                <h4 class="compact-title">图像选取</h4>
+                <p><strong>优先级：</strong>与文字数据源优先级一致，优先采用辞典配图或中国钱币博物馆、中国国家博物馆官方数字资源的高清藏品图；避免来源不明的网络图片。</p>
+                <p><strong>覆盖原则：</strong>每一版式记录至少配一张代表性图片；同一版式若有多个角度（正面/背面）图像，可在 image 字段中以列表形式存储多个路径。</p>
+              </div>
+
+              <div class="compact-section">
+                <h4 class="compact-title">暂不收录范围</h4>
+                <ul>
+                  <li>钱币市场价格和收藏评级</li>
+                  <li>私铸钱、仿铸钱及现代复制品</li>
+                  <li>缺少可靠文献来源的钱币记录</li>
+                </ul>
               </div>
             </div>
           </div>
         </section>
 
-        <section class="screen" data-screen="team">
-          <div class="content-screen">
-            <div class="screen-header">
-              <span class="screen-tag">Team</span>
-              <h2>项目团队</h2>
-            </div>
-            <div class="team-grid">
-              <div class="team-card">
-                <strong>项目负责人</strong>
-                <span>钱币学与数字人文学研究</span>
-              </div>
-              <div class="team-card">
-                <strong>数据建设</strong>
-                <span>古代钱币信息结构化整理</span>
-              </div>
-              <div class="team-card">
-                <strong>数字展示</strong>
-                <span>界面设计与知识可视化开发</span>
-              </div>
-            </div>
-          </div>
-        </section>
       </main>
+
+      <div id="coinDetailOverlay" class="detail-overlay" aria-hidden="true">
+        <div class="detail-panel" role="dialog" aria-modal="true">
+          <button class="detail-close" type="button" aria-label="关闭详情">×</button>
+          <div class="detail-content"></div>
+        </div>
+      </div>
     </div>
 
     <script src="app.js"></script>

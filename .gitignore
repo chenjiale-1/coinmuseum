@@ -1,0 +1,21 @@
+# ---- 编排与工具产生的临时内容 ----
+.agentix/
+.pptx-sessions/
+.sandbox-tmp/
+*.pptx.aiwork-pptx-*.json
+*.pptx.aiwork-pptx-*.json.lock
+
+# ---- 运行时产物 ----
+__pycache__/
+*.py[cod]
+server.log
+tmp_index.html
+_remote.txt
+
+# ---- 系统文件 ----
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# ---- 数据库备份（保留主库 coin_museum.db）----
+data/*.backup-*.db
