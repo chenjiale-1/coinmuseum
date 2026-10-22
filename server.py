@@ -958,4 +958,6 @@ def serve_frontend(path):
 
 if __name__ == "__main__":
     init_db()
-    app.run(host="0.0.0.0", port=8000, debug=True)
+    # 云平台（Render / Railway 等）通过 PORT 环境变量注入端口；本地默认 8000。
+    _port = int(os.environ.get("PORT", "8000"))
+    app.run(host="0.0.0.0", port=_port, debug=os.environ.get("FLASK_DEBUG") == "1")
